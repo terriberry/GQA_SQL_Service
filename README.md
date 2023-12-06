@@ -77,3 +77,18 @@ We also expose port 8080 with the `-p 8080:8080` option.
 ```shell
 docker run -e OPENAI_API_KEY=$OPENAI_API_KEY -p 8080:8080 my-langserve-app
 ```
+
+## Creating a new AI Service package
+[Here](https://github.com/langchain-ai/langchain/blob/master/templates/README.md) is a link that explains how to create a Langchain package.
+
+The Langchain package has no functionality as of yet. The functionality can be added by adding a package inside the `/packages` folder.
+
+This can be done using Poetry. Poetry is a dependency managment and packaging tool for Python. We will use Poetry to create a Python package of the AI service. [Here](https://python-poetry.org/docs/) is the official doc from Poetry.
+
+
+Head into the `/packages` folder and run the following command to create a new Poetry package:
+
+```shell
+poetry new <package_name>
+```
+
