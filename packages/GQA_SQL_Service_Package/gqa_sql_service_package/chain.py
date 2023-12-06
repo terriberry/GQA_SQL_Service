@@ -10,13 +10,13 @@ from sqlalchemy import URL
 import os
 # DB connection
 
-SERVER = 'ava-motovate\ebamsqlserver'
-DATABASE = 'Motovate_VWSA_20200612'
-USERNAME = 'sa'
-PASSWORD = 'Leg@l123'
-DRIVER = 'ODBC Driver 17 for SQL Server'
+SERVER = os.environ.get("SERVER")
+DATABASE = os.environ.get("DATABASE")
+USERNAME = os.environ.get("USERNAME")
+PASSWORD = os.environ.get("PASSWORD")
+DRIVER = os.environ.get("DRIVER", 'ODBC Driver 17 for SQL Server')
 
-connectionString = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}'
+connectionString = f'DRIVER={DRIVER};SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}'
 url = URL.create("mssql+pyodbc", query={"odbc_connect": connectionString})
 
 db = SQLDatabase.from_uri(
