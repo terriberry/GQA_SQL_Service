@@ -18,7 +18,7 @@ fastapi = "^0.104.0"
 sse-starlette = "^1.6.5"
 
 [tool.langserve]
-export_module = "motovate_ai2.chain"
+export_module = "gqa_sql_service.chain"
 export_attr = "chain"
 
 

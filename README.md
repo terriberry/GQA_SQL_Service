@@ -92,3 +92,29 @@ Head into the `/packages` folder and run the following command to create a new P
 poetry new <package_name>
 ```
 
+Add the following dependencies into the `pyproject.toml` file inside the created package. The `pyproject.toml` is used to tell the host that is running the package to install the packages listed inside:
+
+```shell
+[tool.poetry.group.dev.dependencies]
+langchain-cli = ">=0.0.15"
+fastapi = "^0.104.0"
+sse-starlette = "^1.6.5"
+
+[tool.langserve]
+export_module = "<name of package>.chain"
+export_attr = "chain"
+```
+
+Add the dependency for the newly created package inside the `pyproject.toml` of the main service package:
+
+```shell
+<name of package> = {path = "packages\\<name of package>", develop = true}
+```
+
+Import the chain package into the `server.py`:
+
+```shell
+from <package_name>.chain import chain as <choose a name>
+
+add_routes(app, <chosen name>, path="\<endpoint name>")
+```
