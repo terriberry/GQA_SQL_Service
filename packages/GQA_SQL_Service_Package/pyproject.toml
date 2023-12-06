@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "gqa-sql-service"
+name = "gqa-sql-service-package"
 version = "0.1.0"
 description = ""
 authors = ["Terri Lee <terriL@motovate.co.za>"]
@@ -18,7 +18,7 @@ fastapi = "^0.104.0"
 sse-starlette = "^1.6.5"
 
 [tool.langserve]
-export_module = "gqa_sql_service.chain"
+export_module = "gqa_sql_service_package.chain"
 export_attr = "chain"
 
 
