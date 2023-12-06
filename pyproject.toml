@@ -13,7 +13,7 @@ python = "^3.11"
 uvicorn = "^0.23.2"
 langserve = {extras = ["server"], version = ">=0.0.30"}
 pydantic = "<2"
-gqa-sql-service-package = {path = "packages\\GQA_SQLService_Package", develop = true}
+gqa-sql-service-package = {path = "packages//GQA_SQL_Service_Package", develop = true}
 
 
 [tool.poetry.group.dev.dependencies]

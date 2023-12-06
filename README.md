@@ -118,3 +118,5 @@ from <package_name>.chain import chain as <choose a name>
 
 add_routes(app, <chosen name>, path="\<endpoint name>")
 ```
+
+Finally the Dockerfile has to be updated to install the OBDC driver that is needed for the SQL Server database connection. You can copy the Dockerfile in this project
