@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from langserve import add_routes
-from gqa_sql_service_package import chain
+from gqa_sql_service_package.chain import chain
 
 app = FastAPI()
 
@@ -12,7 +12,7 @@ async def redirect_root_to_docs():
 
 
 # Edit this to add the chain you want to add
-add_routes(app, chain, path="\gqa-sql-service-chain")
+add_routes(app, chain, path="/gqa-sql-service-chain")
 
 if __name__ == "__main__":
     import uvicorn

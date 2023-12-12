@@ -8,25 +8,27 @@ import pyodbc
 from sqlalchemy import create_engine
 from sqlalchemy import URL
 import os
-# DB connection
+from langchain.chains import LLMChain
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+
+#load_dotenv()
 
 SERVER = os.environ.get("SERVER")
 DATABASE = os.environ.get("DATABASE")
 USERNAME = os.environ.get("USERNAME")
 PASSWORD = os.environ.get("PASSWORD")
-DRIVER = os.environ.get("DRIVER", 'ODBC Driver 17 for SQL Server')
+DRIVER = os.environ.get("DRIVER", "ODBC Driver 17 for SQL Server")
+INCLUDE_TABLES = [x.strip() for x in os.environ.get("INCLUDE_TABLES").split(",")]
 
-connectionString = f'DRIVER={DRIVER};SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}'
+
+connectionString = f'DRIVER={{{DRIVER}}};SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}'
 url = URL.create("mssql+pyodbc", query={"odbc_connect": connectionString})
 
 db = SQLDatabase.from_uri(
     url,
-    include_tables=[
-                        "CONTACTS_normalized",
-                        "USERS_normalized",
-                        "QUOTES_normalized",
-                        "DEALERS_normalized"
-                   ],
+    include_tables= INCLUDE_TABLES,
     view_support=True
 )
 
@@ -34,7 +36,7 @@ db = SQLDatabase.from_uri(
 
 # Create the chain
 
-llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k", openai_api_key=os.environ.get("OPENAI_API_KEY"))
+llm = ChatOpenAI(model_name=os.environ.get("CHATGPT_MODEL"), openai_api_key=os.environ.get("OPENAI_API_KEY"))
 
 sql_query_execution_interpret_chain = SQLDatabaseChain.from_llm(
     llm,
