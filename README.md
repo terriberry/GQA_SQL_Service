@@ -120,3 +120,18 @@ add_routes(app, <chosen name>, path="\<endpoint name>")
 ```
 
 Finally the Dockerfile has to be updated to install the OBDC driver that is needed for the SQL Server database connection. You can copy the Dockerfile in this project
+
+## Branching strategy
+The branching strategy that is used is Trunk based development. This strategy is ideal for a microservice architecture mainly due to the faster and smaller releases. Directly merging to master allows smaller and faster releases
+
+## Versioning
+There are 3 pre-release tags that are used:
+- `-alpha`
+- `-beta`
+- `-rc`
+
+The `-alpha` pre-release is considered unstable. It is a relase that is inteded for testing and POC. There are more changes that are likely to come that will introduce breaking changes. `-alpha` releases are not production ready.
+
+The `-beta` pre-release is considered to be more stable. Although more stable than `-alpha` this release may still contain bugs. There won't be any breaking changes that will be introduced with this release.
+
+The `-rc` pre-release stands for release-candidate. This release is intended for release and has already undergone testing and awaiting rigorous testing from QA.
